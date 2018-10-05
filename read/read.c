@@ -9,4 +9,7 @@ int main() {
          putchar(c);
       fclose(file);
    }
+   else{
+   	printf("NO such FIle \n");
+   }
 }
