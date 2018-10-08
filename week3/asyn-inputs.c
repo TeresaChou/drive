@@ -40,10 +40,11 @@ int main (void) {
    while ( 1 ) {
       // printf( "%d\n", eventCounter );
       // eventCounter = 0;
+      printf( "%d\n", digitalRead(BUTTON_PIN1));
       digitalWrite(LED_LIGHT, LOW);
       delay( 500 ); // wait 1 second
       digitalWrite(LED_LIGHT, HIGH);
-      delay( 500 ); // wait 1 second
+      delay(500); // wait 1 second
    }
    return 0;
 }

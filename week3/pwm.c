@@ -1,5 +1,3 @@
-#include
-#include
 #include<wiringPi.h>
 #include<stdio.h>
 #include<stdlib.h>

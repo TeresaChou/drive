@@ -1,7 +1,8 @@
 #The following macros should be defined.
 TARGET1=asyn-inputs
+TARGET2=pwm
 OBJECT1=asyn-inputs.o
-OBJECT2=
+OBJECT2=pwm.o
 CC=gcc
 CXX=g++
 LD=g++
@@ -11,9 +12,12 @@ LD_FLAGS += -lwiringPi
 C_FLAGS=
 # end of user configuration
 
-ALL : $(TARGET1)
+ALL : $(TARGET1) $(TARGET2)
 
-$(TARGET1) : $(OBJECT1) $(OBJECT2)
+$(TARGET1) : $(OBJECT1)
+	$(LD) $^ $(LD_FLAGS) -o $@
+
+$(TARGET2) : $(OBJECT2)
 	$(LD) $^ $(LD_FLAGS) -o $@
 
 %.o : %.c

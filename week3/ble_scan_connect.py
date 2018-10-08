@@ -33,7 +33,7 @@ try:
     testService = dev.getServiceByUUID(UUID(0xfff0))
     for ch in testService.getCharacteristics():
         print str(ch)
-    ch = dev.getCharacteristics(uuid=UUID(0xfff1))[0]
+    ch = dev.getCharacteristics(uuid=UUID(0xfff3))[0]
     if (ch.supportsRead()):
         print ch.read()
 
