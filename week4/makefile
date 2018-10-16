@@ -1,7 +1,8 @@
 #The following macros should be defined.
 TARGET1=i2c-pi-arduino
+TARGET2=adxl
 OBJECT1=i2c-pi-arduino.o
-OBJECT2=
+OBJECT2=adxl.o
 CC=gcc
 CXX=g++
 LD=g++
@@ -12,8 +13,10 @@ LD_FLAGS =
 C_FLAGS=
 # end of user configuration
 #
-ALL : $(TARGET1)
-$(TARGET1) : $(OBJECT1) $(OBJECT2)
+ALL : $(TARGET1) $(TARGET2)
+$(TARGET1) : $(OBJECT1)
+	$(LD) $^ $(LD_FLAGS) -o $@
+$(TARGET2) : $(OBJECT2)
 	$(LD) $^ $(LD_FLAGS) -o $@
 %.o : %.c
 	$(CC) $(C_FLAGS) -c $<
