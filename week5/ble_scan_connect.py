@@ -14,14 +14,15 @@ class ScanDelegate(DefaultDelegate):
 	self.led1 = led1
 	self.led2 = led2
     def setHandle(self,ch1, ch2):
-	self.handle1 = ch1.getHandle() + 1
-	self.handle2 = ch2.getHandle() + 1
+	self.handle1 = ch1.getHandle()
+	self.handle2 = ch2.getHandle()
     def handleNotification(self, cHandle, data):
         print "notice!"
+        print cHandle
 	if(cHandle == self.handle1):
-	    led1.write(data)
-	else if(cHandle == self.handle2):
-	    led2.write(data)
+	    self.led1.write(data)
+	elif(cHandle == self.handle2):
+	    self.led2.write(data)
 
 deleg = ScanDelegate()
 ##scanner = Scanner().withDelegate(deleg)
@@ -69,9 +70,9 @@ ch_but2 = srv_b.getCharacteristics(BUT2)[0]
 
 deleg.setLED(ch_led1, ch_led2)
 deleg.setHandle(ch_but1, ch_but2)
-dev.writeCharacteristic(deleg.handle1, '\x01\x00')
+dev.writeCharacteristic(deleg.handle1 + 1, '\x01\x00')
 print deleg.handle1
-dev.writeCharacteristic(deleg.handle2, '\x01\x00')
+dev.writeCharacteristic(deleg.handle2 + 1, '\x01\x00')
 print deleg.handle2
 
 try:
@@ -86,7 +87,7 @@ try:
 	if dev.waitForNotifications(3.0):
             # print "get notification"
 	    continue
-        else:
+        #else:
             # print "no note detected"
 
 finally:
