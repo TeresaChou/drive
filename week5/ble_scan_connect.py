@@ -11,8 +11,8 @@ class ScanDelegate(DefaultDelegate):
         elif isNewData:
             print "Received new data from", dev.addr
     def setHandle(self,ch1, ch2):
-	self.handle1 = ch1.getHandle()
-	self.handle2 = ch2.getHandle()
+	self.handle1 = ch1.getHandle() + 1
+	self.handle2 = ch2.getHandle() + 1
     def handleNotification(self, cHandle, data):
         print "call back"
 	if(cHandle == self.handle1 or cHandle == self.handle2):
