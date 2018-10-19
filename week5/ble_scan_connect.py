@@ -9,8 +9,14 @@ class ScanDelegate(DefaultDelegate):
             print "Discovered device", dev.addr
         elif isNewData:
             print "Received new data from", dev.addr
+    def setHandle(cha):
+	self.handle = cha.getHandle()
+    def handleNotification(self, cHandle, data):
+	if(cHandle == self.handle):
+	    print data
 
-scanner = Scanner().withDelegate(ScanDelegate())
+deleg = ScanDelegate()
+scanner = Scanner().withDelegate(deleg)
 devices = scanner.scan(10.0)
 n=0
 for dev in devices:
@@ -30,12 +36,17 @@ for svc in dev.services:
     print str(svc)
 
 try:
-    testService = dev.getServiceByUUID(UUID("f0001110-0451-4000-B000-000000000000"))
+    testService = dev.getServiceByUUID(UUID("f0001120-0451-4000-B000-000000000000"))
     for ch in testService.getCharacteristics():
         print str(ch)
-    ch = dev.getCharacteristics(uuid=UUID("f0001111-0451-4000-B000-000000000000"))[0]
+	
+    ch = dev.getCharacteristics(uuid=UUID("f0001121-0451-4000-B000-000000000000"))[0]
+    deleg.setHandle(ch)
     if (ch.supportsRead()):
         print ch.read()
+    while True:
+	if dev.waitForNotifications(1.0):
+	    continue
 
 finally:
     dev.disconnect()
