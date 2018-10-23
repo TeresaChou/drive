@@ -22,4 +22,16 @@ img2 = cv2.drawKeypoints(gray, kp, None,color=(255,0,0))			# draw only keypoints
 '''
 
 cv2.imwrite('frame.jpg',img2)											# Display the resulting framek
+hsv = cv2.cvtColor(cap, cv2.COLOR_BGR2HSV)
+lower_blue = np.array([0, 50, 0])
+upper_blue = np.array([255, 255, 255])
+# Threshold the HSV image to get only blue colors
+mask = cv2.inRange(hsv, lower_blue, upper_blue)
+# Bitwise-AND mask and original image
+res = cv2.bitwise_and(cap,cap, mask= mask)
+
+cv2.imwrite('mask.jpg',mask)
+cv2.imwrite('res.jpg',res)
+
+
 
