@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
                                 NULL); 
 
   // set elements properties
-
+  // g_object_set(src, "host", "192.168.1.230", NULL);
   g_object_set(src, "port", 5001, NULL);
   g_object_set(src, "caps", srcCaps, NULL);
   g_object_set(sink, "sync", 0, NULL);
