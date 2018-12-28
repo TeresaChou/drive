@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 from PIL import Image, ImageTk
 import random
 import time
+import accuracy_estimate
 
 # build the window
 window = tk.Tk()
@@ -54,6 +55,9 @@ wrong = 0
 
 # function for changing candidate
 def change(dire):
+    if dire == 4:
+        return
+
     global picpos, correct, wrong, pos, reverse, jump
     output = False
 
@@ -197,9 +201,12 @@ result = canvas.create_text(
 
 
 # bind the keyboard
-window.bind("<Up>", lambda event: change(0))
-window.bind("<Down>", lambda event: change(1))
-window.bind("<Left>", lambda event: change(2))
-window.bind("<Right>", lambda event: change(3))
+# window.bind("<Up>", lambda event: change(0))
+# window.bind("<Down>", lambda event: change(1))
+# window.bind("<Left>", lambda event: change(2))
+# window.bind("<Right>", lambda event: change(3))
+
+while True:
+    change(time_to_test())
 
 window.mainloop()
