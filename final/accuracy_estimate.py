@@ -9,8 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 detection_graph, sess = detector_utils.load_inference_graph()
 
-video = cv2.VideoCapture(0)
-
+video = cv2.VideoCapture(0) 
 
 
 
